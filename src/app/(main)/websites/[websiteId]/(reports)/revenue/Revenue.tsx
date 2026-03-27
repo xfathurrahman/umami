@@ -24,7 +24,7 @@ export interface RevenueProps {
 }
 
 export function Revenue({ websiteId, startDate, endDate, unit }: RevenueProps) {
-  const [currency, setCurrency] = useState('USD');
+  const [currency, setCurrency] = useState('IDR');
   const { formatMessage, labels } = useMessages();
   const { locale, dateLocale } = useLocale();
   const { countryNames } = useCountryNames(locale);

@@ -84,12 +84,18 @@ export function stringToColor(str: string) {
 
 export function formatCurrency(value: number, currency: string, locale = 'en-US') {
   let formattedValue: Intl.NumberFormat;
+  const numberFormatOptions: Intl.NumberFormatOptions = {
+    style: 'currency',
+    currency,
+  };
+
+  if (currency === 'IDR') {
+    numberFormatOptions.minimumFractionDigits = 0;
+    numberFormatOptions.maximumFractionDigits = 0;
+  }
 
   try {
-    formattedValue = new Intl.NumberFormat(locale, {
-      style: 'currency',
-      currency: currency,
-    });
+    formattedValue = new Intl.NumberFormat(locale, numberFormatOptions);
   } catch {
     // Fallback to default currency format if an error occurs
     formattedValue = new Intl.NumberFormat(locale, {
